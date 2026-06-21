@@ -1,0 +1,292 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cinzel:wght@500;600;700&display=swap");
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:9999;
+
+  height:72px;
+  transition:all .35s ease;
+
+  background:rgba(10,15,28,.35);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.navbar.show{
+  transform:translateY(0);
+}
+
+.navbar.hide{
+  transform:translateY(-100%);
+}
+
+.navbar.scrolled{
+  background:rgba(10,15,28,.95);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ================= CONTAINER ================= */
+
+.nav-container{
+  width:100%;
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 50px;
+}
+
+/* ================= LOGO ================= */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  cursor:pointer;
+}
+
+.logo img{
+  width:58px;
+  height:58px;
+  object-fit:contain;
+}
+
+.logo-text{
+  display:flex;
+  flex-direction:column;
+}
+
+.logo-text span{
+  font-family:"Cinzel", serif;
+  font-size:15px;
+  font-weight:700;
+  color:#fff;
+  line-height:1;
+}
+
+.logo-text small{
+  font-size:10px;
+  color:#dbe4f1;
+  letter-spacing:2px;
+}
+
+/* ================= MENU ================= */
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:35px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#dbe4f1;
+  font-size:14px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  position:relative;
+  transition:.3s;
+}
+
+/* UNDERLINE */
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,#ff0000,#ff4d4d);
+  transition:.35s ease;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-links a.active{
+  color:#fff;
+}
+
+.nav-links a.active::after{
+  width:100%;
+}
+
+/* ================= RIGHT ================= */
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+/* BUTTON */
+
+.quote-btn{
+  padding:11px 24px;
+  border:none;
+  border-radius:50px;
+
+  background:linear-gradient(135deg,#c40000,#ff3434);
+
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+
+  cursor:pointer;
+  transition:.35s ease;
+}
+
+.quote-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(255,0,0,.35);
+}
+
+/* ================= HAMBURGER ================= */
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:#fff;
+  border-radius:10px;
+  transition:.3s ease;
+}
+
+.hamburger.open span:nth-child(1){
+  transform:rotate(45deg) translateY(8px);
+}
+
+.hamburger.open span:nth-child(2){
+  opacity:0;
+}
+
+.hamburger.open span:nth-child(3){
+  transform:rotate(-45deg) translateY(-8px);
+}
+
+/* ================= LARGE SCREEN ================= */
+
+@media (min-width:1600px){
+
+  .nav-container{
+    padding:0 80px;
+  }
+
+  .nav-links{
+    gap:45px;
+  }
+
+  .logo img{
+    width:62px;
+    height:62px;
+  }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width:992px){
+
+  .nav-container{
+    padding:0 25px;
+  }
+
+  .nav-links{
+    gap:18px;
+  }
+
+  .logo img{
+    width:50px;
+    height:50px;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+  .navbar{
+    height:64px;
+  }
+
+  .nav-container{
+    height:64px;
+    padding:0 18px;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:64px;
+    left:0;
+
+    width:100%;
+
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+
+    padding:25px 0;
+
+    background:rgba(10,15,28,.98);
+    backdrop-filter:blur(20px);
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .quote-btn{
+    display:none;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width:480px){
+
+  .logo img{
+    width:42px;
+    height:42px;
+  }
+
+  .logo-text span{
+    font-size:11px;
+  }
+
+  .logo-text small{
+    font-size:8px;
+    letter-spacing:1px;
+  }
+}

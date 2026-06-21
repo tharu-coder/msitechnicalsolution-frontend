@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+/* ─── CSS VARIABLES ─────────────────────────────── */
+:root {
+  --red:        #e31c23;
+  --red-deep:   #a80e14;
+  --red-bright: #ff3640;
+  --blue:       #0a2a6e;
+  --blue-mid:   #1740a8;
+  --blue-light: #2d5be3;
+  --white:      #f5f5f5;
+  --off-white:  #dce4ef;
+  --black:      #060810;
+  --black-mid:  #0d1220;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--black);
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────── */
+.ch-hero {
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ch-video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.ch-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(6,8,16,0.72)  0%,
+      rgba(10,42,110,0.55) 40%,
+      rgba(163,14,20,0.50) 70%,
+      rgba(6,8,16,0.75) 100%
+    );
+}
+
+.ch-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    transparent 55%,
+    rgba(227,28,35,0.08) 75%,
+    transparent 90%
+  );
+}
+
+/* ── Moving grid ── */
+.ch-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: ch-gridShift 20s linear infinite;
+}
+@keyframes ch-gridShift {
+  from { background-position: 0 0; }
+  to   { background-position: 80px 80px; }
+}
+
+/* ── Corner brackets ── */
+.ch-brackets {
+  position: absolute;
+  inset: 40px;
+  z-index: 3;
+  pointer-events: none;
+}
+.ch-brackets::before,
+.ch-brackets::after {
+  content: '';
+  position: absolute;
+  width: 60px; height: 60px;
+}
+.ch-brackets::before {
+  top: 0; left: 0;
+  border-top: 2px solid var(--red);
+  border-left: 2px solid var(--red);
+}
+.ch-brackets::after {
+  bottom: 0; right: 0;
+  border-bottom: 2px solid var(--blue-light);
+  border-right: 2px solid var(--blue-light);
+}
+
+/* ─────────────────────────────────────────────────
+   HERO CONTENT
+   — flex column, all children centered
+───────────────────────────────────────────────── */
+.ch-content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* horizontally center every child */
+  text-align: center;
+  padding: 100px 24px 40px;
+  width: 100%;
+  max-width: 960px;
+  gap: 0;               /* individual margins control vertical rhythm */
+}
+
+/* ─────────────────────────────────────────────────
+   LOGO MS WRAP — white bg, rings sit BEHIND the image
+───────────────────────────────────────────────── */
+.ch-logo-ms-wrap {
+  position: relative;
+  margin-bottom: 18px;
+  opacity: 0;
+  width: 145px;
+  height: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* White circular background */
+  background: #ffffff;
+  border-radius: 50%;
+  /* Soft glow to blend with the dark hero */
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.10),
+    0 0 28px rgba(255,255,255,0.18),
+    0 0 50px rgba(227,28,35,0.20);
+}
+
+/* ── Ring 1 ── */
+.ch-ring-1 {
+  position: absolute;
+  width: 210px; height: 210px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(227,28,35,0.45);
+  animation: ch-spin 16s linear infinite;
+  z-index: 0;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Ring 2 ── */
+.ch-ring-2 {
+  position: absolute;
+  width: 175px; height: 175px;
+  border-radius: 50%;
+  border: 1px solid rgba(45,91,227,0.4);
+  animation: ch-spin-rev 10s linear infinite;
+  z-index: 0;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Ring 3 ── */
+.ch-ring-3 {
+  position: absolute;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  border: 1px solid rgba(227,28,35,0.25);
+  animation: ch-pulse 3s ease-in-out infinite;
+  z-index: 0;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Logo image — on top of rings, fits inside white circle ── */
+.ch-logo-ms {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 50%;
+  padding: 8px;
+  display: block;
+  position: relative;
+  z-index: 1;
+  /* No extra background — the wrap IS the white background */
+  background: transparent;
+  border: none;
+  filter: none; /* remove red shadow so logo reads cleanly on white */
+}
+
+/* ─────────────────────────────────────────────────
+   COMPANY NAME — bigger, more presence
+───────────────────────────────────────────────── */
+.ch-company-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;        /* ↑ was 0.62rem */
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--off-white);
+  opacity: 0;
+  margin-bottom: 16px;
+  text-shadow: 0 0 20px rgba(45,91,227,0.5);
+  /* Constrain width so long name wraps neatly centered */
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────────
+   RULE DIVIDER — perfectly centered, visually between
+   the company name above and the main title below
+───────────────────────────────────────────────── */
+.ch-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  width: 100%;
+  max-width: 420px;
+  align-self: center;
+  /* Equal spacing from name above and title below */
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.ch-rule-line {
+  flex: 1;
+  height: 1px;
+}
+.ch-rule-line.red  { background: linear-gradient(90deg, transparent, var(--red)); }
+.ch-rule-line.red2 { background: linear-gradient(90deg, var(--red), transparent); }
+.ch-rule-line.blue { background: linear-gradient(90deg, transparent, var(--blue-light)); }
+.ch-rule-line.blue2{ background: linear-gradient(90deg, var(--blue-light), transparent); }
+
+.ch-rule-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ch-rule-dot.red  { background: var(--red);        box-shadow: 0 0 8px var(--red); }
+.ch-rule-dot.blue { background: var(--blue-light);  box-shadow: 0 0 8px var(--blue-light); }
+
+/* ─────────────────────────────────────────────────
+   MAIN TITLE
+───────────────────────────────────────────────── */
+.ch-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  opacity: 0;
+  color: var(--white);
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.ch-title span.accent-red {
+  color: var(--red-bright);
+  position: relative;
+}
+.ch-title span.accent-red::after {
+  content: '';
+  position: absolute;
+
+  bottom: 2px;
+  left: 50%;
+
+  width: 100%;
+  height: 2px;
+
+  background: var(--red);
+  border-radius: 2px;
+
+  /* 🔥 SHIFT SLIGHTLY RIGHT */
+  transform: translateX(calc(-50% + 6px)) scaleX(0);
+
+  transform-origin: center;
+  transition: transform 0.7s ease 0.2s;
+}
+
+.ch-title span.accent-red.line-reveal::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ─────────────────────────────────────────────────
+   SUBTITLE
+───────────────────────────────────────────────── */
+.ch-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.22rem;
+  letter-spacing: 1.5px;
+  color: var(--off-white);
+  opacity: 0;
+  margin-bottom: 32px;
+}
+
+/* ─────────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────────── */
+.ch-btns {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;   /* ↓ tighter gap — Canny logo sits just below */
+  opacity: 0;
+}
+
+.ch-btn {
+  padding: 14px 38px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.ch-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transition: left 0.45s ease;
+}
+.ch-btn:hover::before { left: 160%; }
+
+.ch-btn-primary {
+  background: linear-gradient(135deg, var(--red-deep), var(--red-bright));
+  border: none;
+  color: var(--white);
+  box-shadow: 0 6px 28px rgba(227,28,35,0.45);
+}
+.ch-btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(227,28,35,0.6);
+}
+
+.ch-btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--blue-light);
+  color: var(--blue-light);
+}
+.ch-btn-outline:hover {
+  background: rgba(45,91,227,0.14);
+  border-color: #5b8fff;
+  color: #5b8fff;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(45,91,227,0.3);
+}
+
+/* ─────────────────────────────────────────────────
+   CANNY LOGO — bigger, pulled up closer to buttons
+───────────────────────────────────────────────── */
+.ch-logo-canny-wrap {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;         /* sits directly below the buttons gap */
+}
+
+.ch-logo-canny {
+  width: 150px;          /* ↑ was 120px */
+  height: 150px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 20px rgba(45,91,227,0.6))
+    brightness(1.05);
+  transition: filter 0.3s, transform 0.3s;
+}
+.ch-logo-canny:hover {
+  filter: drop-shadow(0 0 30px rgba(227,28,35,0.7)) brightness(1.15);
+  transform: scale(1.07);
+}
+
+/* ─────────────────────────────────────────────────
+   SCROLL INDICATOR
+───────────────────────────────────────────────── */
+.ch-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+}
+.ch-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--red), rgba(45,91,227,0.3), transparent);
+  animation: ch-scrollDrop 2s ease-in-out infinite;
+}
+@keyframes ch-scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  55%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* ── Hero bottom gradient line ── */
+.ch-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--blue-light), var(--red));
+  z-index: 5;
+}
+
+/* ─────────────────────────────────────────────────
+   ABOUT SECTION
+───────────────────────────────────────────────── */
+.ch-about {
+  padding: 130px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 10% 50%, rgba(10,42,110,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 30%, rgba(163,14,20,0.12) 0%, transparent 55%),
+    var(--black-mid);
+}
+
+.ch-about::before {
+  content: 'CANNY';
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: 18vw;
+  font-weight: 900;
+  color: rgba(255,255,255,0.015);
+  letter-spacing: 10px;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ch-about-box {
+  max-width: 860px;
+  width: 100%;
+  text-align: center;
+  padding: 80px 60px;
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: 2px solid var(--red);
+  border-bottom: 2px solid var(--blue-mid);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.7),
+    inset 0 0 40px rgba(10,42,110,0.08);
+  transition: transform 0.4s ease;
+  opacity: 0;
+}
+.ch-about-box:hover { transform: translateY(-6px); }
+
+.ch-about-box::before,
+.ch-about-box::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+}
+.ch-about-box::before {
+  top: -2px; left: -2px;
+  border-top: 3px solid var(--red);
+  border-left: 3px solid var(--red);
+}
+.ch-about-box::after {
+  bottom: -2px; right: -2px;
+  border-bottom: 3px solid var(--blue-light);
+  border-right: 3px solid var(--blue-light);
+}
+
+.ch-about-badge {
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  border: 1px solid rgba(227,28,35,0.35);
+  padding: 5px 18px;
+  margin-bottom: 26px;
+}
+
+.ch-about-box h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 28px;
+  line-height: 1.2;
+}
+.ch-about-box h2 em { font-style: normal; color: #5b8fff; }
+
+.ch-about-box p {
+  font-family: 'Raleway', sans-serif;
+  color: rgba(220,228,239,0.7);
+  line-height: 2.1;
+  font-size: 1.05rem;
+  font-weight: 300;
+}
+.ch-about-box p strong { font-weight: 600; color: var(--white); }
+.ch-about-box p em    { font-style: normal; color: #5b8fff; font-weight: 500; }
+
+/* ─────────────────────────────────────────────────
+   KEYFRAMES
+───────────────────────────────────────────────── */
+@keyframes ch-spin     { from { transform: translate(-50%,-50%) rotate(0deg);   } to { transform: translate(-50%,-50%) rotate(360deg);  } }
+@keyframes ch-spin-rev { from { transform: translate(-50%,-50%) rotate(0deg);   } to { transform: translate(-50%,-50%) rotate(-360deg); } }
+@keyframes ch-pulse    {
+  0%, 100% { opacity: 0.25; transform: translate(-50%,-50%) scale(1); }
+  50%       { opacity: 0.7;  transform: translate(-50%,-50%) scale(1.08); }
+}
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ch-title        { font-size: 2.1rem; letter-spacing: 2px; }
+  .ch-company-name { font-size: 0.65rem; letter-spacing: 2.5px; }
+  .ch-btns         { flex-direction: column; align-items: center; }
+  .ch-about-box    { padding: 44px 24px; }
+  .ch-about-box h2 { font-size: 1.6rem; }
+  .ch-logo-ms-wrap { width: 120px; height: 120px; }
+  .ch-logo-ms      { width: 100px; height: 100px; }
+  .ch-ring-1       { width: 180px; height: 180px; }
+  .ch-ring-2       { width: 150px; height: 150px; }
+  .ch-ring-3       { width: 138px; height: 138px; }
+  .ch-content      { padding: 110px 20px 40px; }
+  .ch-logo-canny   { width: 120px; height: 120px; }
+}
