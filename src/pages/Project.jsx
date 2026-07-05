@@ -1,4 +1,5 @@
 import "../css/project.css";
+import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -196,7 +197,9 @@ export default function Project() {
           <div className="elv-section-label">Featured Work</div>
           <h2 className="elv-section-title">Selected <em>Projects</em></h2>
         </div>
-        <a href="#" className="elv-view-all">View All →</a>
+       <button className="elv-view-all">
+  View All →
+</button>
       </div>
 
       <section className="elv-projects">

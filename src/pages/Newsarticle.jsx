@@ -133,9 +133,7 @@ const FILTERS = ['All', 'Company News', 'Industry', 'Innovation', 'Projects', 'M
 export default function NewsArticles() {
   const rootRef = useRef(null);
   const heroRef = useRef(null);
-  const heroBgRef = useRef(null);
   const heroContentRef = useRef(null);
-  const tickerRef = useRef(null);
   const filterBarRef = useRef(null);
   const featuredRef = useRef(null);
   const gridRef = useRef(null);
@@ -145,8 +143,7 @@ export default function NewsArticles() {
   const tlRef = useRef(null);
   const marketRef = useRef(null);
   const ctaRef = useRef(null);
-  const tlItemsRef = useRef([]);
-  const counterRefs = useRef([]);
+
 
   const [activeFilter, setActiveFilter] = useState('All');
   const [articleCount] = useState(GRID_ARTICLES.length + 3);
@@ -393,12 +390,16 @@ export default function NewsArticles() {
                   </div>
                 </div>
 
-                <a href="#" className="msnews__read-link" aria-label={`Read full article: ${FEATURED.title}`}>
+                <button
+                  type="button"
+                  className="msnews__read-link"
+                  aria-label={`Read full article: ${FEATURED.title}`}
+                >
                   Read Article
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
           </article>
@@ -435,12 +436,15 @@ export default function NewsArticles() {
                     </div>
                     <h3 className="msnews__card-title" id={`title-${art.id}`}>{art.title}</h3>
                     <p className="msnews__card-excerpt">{art.excerpt}</p>
-                    <a href="#" className="msnews__card-link" aria-label={`Read: ${art.title}`}>
+                    <button
+                      type="button"
+                      className="msnews__card-link"
+                    >
                       Read More
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                         <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    </a>
+                    </button>
                   </div>
                 </article>
               ))}
@@ -571,12 +575,15 @@ export default function NewsArticles() {
             <h2 className="msnews__wide-title">
               More <span>Insights</span>
             </h2>
-            <a href="#" className="msnews__view-all">
+          <button
+  type="button"
+  className="msnews__view-all"
+>
               View All Articles
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </button>
           </div>
 
           <div className="msnews__wide-row">
