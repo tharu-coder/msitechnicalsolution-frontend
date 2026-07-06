@@ -138,6 +138,7 @@ export default function NewsArticles() {
   const featuredRef = useRef(null);
   const gridRef = useRef(null);
   const insightRef = useRef(null);
+  const topicsRef = useRef(null);
   const sidebarRef = useRef(null);
   const wideSectionRef = useRef(null);
   const tlRef = useRef(null);
@@ -151,6 +152,8 @@ export default function NewsArticles() {
   /* GSAP ENTRANCE ANIMATIONS */
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const scrollDefaults = { once: true };
+
       /* Hero cinematic entrance */
       const heroTl = gsap.timeline({ delay: 0.1 });
 
@@ -173,37 +176,45 @@ export default function NewsArticles() {
 
       /* Filter bar */
       gsap.from(filterBarRef.current, {
-        scrollTrigger: { trigger: filterBarRef.current, start: 'top 90%' },
-        opacity: 0, y: 20, duration: 0.6,
+        scrollTrigger: { trigger: filterBarRef.current, start: 'top 92%', ...scrollDefaults },
+        y: 24, duration: 0.6, ease: 'power2.out',
       });
 
       /* Featured article */
       gsap.from(featuredRef.current, {
-        scrollTrigger: { trigger: featuredRef.current, start: 'top 82%' },
-        opacity: 0, y: 50, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: featuredRef.current, start: 'top 88%', ...scrollDefaults },
+        y: 36, duration: 0.8, ease: 'power3.out',
       });
 
       /* Article grid cards stagger */
       if (gridRef.current) {
         const cards = gridRef.current.querySelectorAll('.msnews__article-card');
         gsap.from(cards, {
-          scrollTrigger: { trigger: gridRef.current, start: 'top 80%' },
-          opacity: 0, y: 40, stagger: 0.12, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: gridRef.current, start: 'top 88%', ...scrollDefaults },
+          y: 28, stagger: 0.1, duration: 0.65, ease: 'power2.out',
         });
       }
 
       /* Insight strip */
       gsap.from(insightRef.current, {
-        scrollTrigger: { trigger: insightRef.current, start: 'top 85%' },
-        opacity: 0, x: -30, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: insightRef.current, start: 'top 90%', ...scrollDefaults },
+        y: 24, duration: 0.6, ease: 'power2.out',
       });
+
+      /* Topics ribbon */
+      if (topicsRef.current) {
+        gsap.from(topicsRef.current, {
+          scrollTrigger: { trigger: topicsRef.current, start: 'top 90%', ...scrollDefaults },
+          y: 20, duration: 0.55, ease: 'power2.out',
+        });
+      }
 
       /* Sidebar widgets stagger */
       if (sidebarRef.current) {
         const widgets = sidebarRef.current.children;
         gsap.from(widgets, {
-          scrollTrigger: { trigger: sidebarRef.current, start: 'top 75%' },
-          opacity: 0, x: 30, stagger: 0.15, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: sidebarRef.current, start: 'top 88%', ...scrollDefaults },
+          y: 20, stagger: 0.12, duration: 0.55, ease: 'power2.out',
         });
       }
 
@@ -211,8 +222,8 @@ export default function NewsArticles() {
       if (wideSectionRef.current) {
         const listCards = wideSectionRef.current.querySelectorAll('.msnews__list-card');
         gsap.from(listCards, {
-          scrollTrigger: { trigger: wideSectionRef.current, start: 'top 80%' },
-          opacity: 0, y: 20, stagger: 0.08, duration: 0.55, ease: 'power2.out',
+          scrollTrigger: { trigger: wideSectionRef.current, start: 'top 88%', ...scrollDefaults },
+          y: 16, stagger: 0.06, duration: 0.5, ease: 'power2.out',
         });
       }
 
@@ -221,8 +232,8 @@ export default function NewsArticles() {
         const items = tlRef.current.querySelectorAll('.msnews__tl-item');
         items.forEach((item, i) => {
           gsap.from(item, {
-            scrollTrigger: { trigger: item, start: 'top 85%', once: true },
-            opacity: 0, x: -30, duration: 0.6, delay: i * 0.05, ease: 'power2.out',
+            scrollTrigger: { trigger: item, start: 'top 90%', ...scrollDefaults },
+            x: -20, duration: 0.55, delay: i * 0.04, ease: 'power2.out',
             onComplete: () => item.classList.add('revealed'),
           });
         });
@@ -232,16 +243,16 @@ export default function NewsArticles() {
       if (marketRef.current) {
         const cells = marketRef.current.querySelectorAll('.msnews__market-cell');
         gsap.from(cells, {
-          scrollTrigger: { trigger: marketRef.current, start: 'top 82%' },
-          opacity: 0, y: 30, stagger: 0.1, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: marketRef.current, start: 'top 88%', ...scrollDefaults },
+          y: 20, stagger: 0.08, duration: 0.55, ease: 'power2.out',
         });
       }
 
       /* CTA section */
       if (ctaRef.current) {
         gsap.from(ctaRef.current.querySelector('.msnews__cta-inner'), {
-          scrollTrigger: { trigger: ctaRef.current, start: 'top 82%' },
-          opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: ctaRef.current, start: 'top 88%', ...scrollDefaults },
+          y: 32, duration: 0.75, ease: 'power3.out',
         });
       }
 
@@ -249,8 +260,8 @@ export default function NewsArticles() {
       const statCells = document.querySelectorAll('.msnews__stat-value');
       statCells.forEach((el) => {
         gsap.from(el, {
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-          opacity: 0, scale: 0.8, duration: 0.6, ease: 'back.out(1.4)',
+          scrollTrigger: { trigger: el, start: 'top 92%', ...scrollDefaults },
+          scale: 0.92, duration: 0.5, ease: 'back.out(1.4)',
         });
       });
 
@@ -258,11 +269,12 @@ export default function NewsArticles() {
       const marketValues = document.querySelectorAll('.msnews__market-value');
       marketValues.forEach((el) => {
         gsap.from(el, {
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-          opacity: 0, y: 15, duration: 0.5, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 92%', ...scrollDefaults },
+          y: 10, duration: 0.45, ease: 'power2.out',
         });
       });
 
+      ScrollTrigger.refresh();
     }, rootRef);
 
     return () => ctx.revert();
@@ -451,6 +463,16 @@ export default function NewsArticles() {
             </div>
           </div>
 
+          {/* Topic Tags — fills vertical space on wide screens */}
+          <div className="msnews__topics-ribbon" ref={topicsRef} aria-label="Popular topics">
+            <span className="msnews__topics-label">Explore Topics</span>
+            <div className="msnews__topics-list">
+              {['Elevator Safety', 'Smart IoT', 'Canny Products', 'Nepal Market', 'High-Rise', 'Maintenance'].map((topic) => (
+                <button key={topic} type="button" className="msnews__topic-chip">{topic}</button>
+              ))}
+            </div>
+          </div>
+
           {/* Insight Strip */}
           <div className="msnews__insight-strip" ref={insightRef} aria-label="Industry insight quote">
             <div className="msnews__insight-inner">
@@ -588,7 +610,7 @@ export default function NewsArticles() {
 
           <div className="msnews__wide-row">
             {WIDE_ARTICLES.map((col, ci) => (
-              <div key={ci} role="region" aria-label={col.col}>
+              <div key={ci} className="msnews__wide-col" role="region" aria-label={col.col}>
                 <div className="msnews__section-label">{col.col}</div>
                 {col.items.map((item, ii) => (
                   <article

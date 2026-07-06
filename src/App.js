@@ -16,22 +16,31 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 0.8,
       smooth: true,
       smoothTouch: false,
     });
 
-    // 🔥 SINGLE RAF LOOP (IMPORTANT FIX)
+    // Optimized RAF loop - only update ScrollTrigger when scrolling
+    let isScrolling = false;
     function raf(time) {
       lenis.raf(time);
-      ScrollTrigger.update(); 
+      if (isScrolling) {
+        ScrollTrigger.update();
+        isScrolling = false;
+      }
       requestAnimationFrame(raf);
     }
+
+    // Track scroll events
+    const onScroll = () => { isScrolling = true; };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 

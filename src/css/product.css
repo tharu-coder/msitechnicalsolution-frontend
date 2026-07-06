@@ -112,7 +112,7 @@
 /* subtitle */
 .prd-hero-sub {
   font-size: 1.05rem;
-  color: rgba(248,248,246,0.58);
+  color: rgba(248,248,246,0.85);
   line-height: 1.8;
   margin-bottom: 40px;
 }
@@ -161,7 +161,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.7);
 }
 
 /* scroll indicator */
@@ -278,7 +278,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--prd-red);
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .prd-cat-tag {
@@ -331,7 +331,7 @@
   margin-bottom: 28px;
 }
 .prd-panel--even .prd-product-desc { color: var(--prd-ink-60); }
-.prd-panel--dark .prd-product-desc { color: rgba(248,248,246,0.6); }
+.prd-panel--dark .prd-product-desc { color: rgba(248,248,246,0.85); }
 
 /* spec chips */
 .prd-specs-row {
@@ -355,6 +355,7 @@
   color: var(--prd-blue);
   border: 1px solid var(--prd-ink-20);
   background: transparent;
+  opacity: 1;
 }
 .prd-panel--even .prd-spec-chip:hover {
   background: var(--prd-blue);
@@ -363,9 +364,9 @@
 }
 
 .prd-panel--dark .prd-spec-chip {
-  color: rgba(255,255,255,0.75);
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.1);
 }
 .prd-panel--dark .prd-spec-chip:hover {
   background: rgba(255,255,255,0.14);
@@ -596,7 +597,7 @@
   text-transform: uppercase;
 }
 .prd-panel--even .prd-panel-footer-label { color: var(--prd-ink-60); }
-.prd-panel--dark .prd-panel-footer-label { color: rgba(255,255,255,0.4); }
+.prd-panel--dark .prd-panel-footer-label { color: rgba(255,255,255,0.7); }
 
 /* ═══════════════════════════════════════════════
    OUTRO
@@ -650,7 +651,7 @@
 
 .prd-outro-sub {
   font-size: 1rem;
-  color: rgba(248,248,246,0.58);
+  color: rgba(248,248,246,0.85);
   max-width: 500px;
   margin: 0 auto 44px;
   line-height: 1.85;

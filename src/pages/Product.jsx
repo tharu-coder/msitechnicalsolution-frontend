@@ -121,7 +121,7 @@ export default function Products() {
         };
 
         // Set initial hidden state immediately (no flash)
-        gsap.set([els.num, els.tag, els.title, els.desc, els.chips, els.btn], { opacity: 0 });
+        gsap.set([els.num, els.tag, els.title, els.desc, els.chips, els.btn], { opacity: 0, y: 20 });
         gsap.set(els.imgWrap, { opacity: 0 });
         gsap.set(els.line, { scaleX: 0 });
         if (els.glassTop)  gsap.set(els.glassTop,  { opacity: 0, y: -16 });
@@ -131,10 +131,10 @@ export default function Products() {
           scrollTrigger: {
             trigger: panel,
             start: "top top",
-            // ─── KEY FIX: end at +=55% so the whole animation
+            // ─── KEY FIX: end at +=35% so the whole animation
             //     completes within ONE normal scroll gesture ───
-            end: "+=55%",
-            scrub: 0.4,
+            end: "+=35%",
+            scrub: 0.15,
             pin: true,
             pinSpacing: true,
           },
